@@ -50,7 +50,14 @@ if (numbers) {
   possibleCharacters = possibleCharacters.concat(numericCharacters) 
 }
 
+for (i = 0; i < length + i; i++)  {
+  let randomCharIndex = Math.floor(Math.random() = possibleCharacters.length)
+  generatePassword += possibleCharacters[randomCharIndex] 
+}
 
+return generatedPassword
+}
+ 
 
 let { length, lowercase, uppercase, specialCharacters, numbers }  = selectedOptions;
 let possibleCharacters = [];
