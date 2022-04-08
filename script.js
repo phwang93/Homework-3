@@ -51,17 +51,54 @@ if (numbers) {
 }
 
 for (i = 0; i < length + i; i++)  {
-  let randomCharIndex = Math.floor(Math.random() = possibleCharacters.length)
-  generatePassword += possibleCharacters[randomCharIndex] 
+  let randomCharIndex = Math.floor(Math.random() = possibleCharacters.length);
+  generatePassword += possibleCharacters[randomCharIndex];
 }
 
 return generatedPassword
-}
+
  
 
 let { length, lowercase, uppercase, specialCharacters, numbers }  = selectedOptions;
 let possibleCharacters = [];
 let generatePassword = "";
+
+function getUserSelection() {
+  let numberofChars = parseInt(prompt('Provide number of characters for the password. Please provide a number from 6 to 60'));
+
+  if (Number.isNaN(numberofChars)) {
+    alert('Please enter a NUMBER')
+    return
+  }
+  if (numberofChars < 6)  {
+    alert('You must include at least 6 characters')
+    return
+  }
+  else if (numberofChars > 60) {
+    alert('You may not select more than 60 characters')
+    return
+  }
+  let useLowerCase = confirm('Would you like to include LowerCase into you password?');
+  let useUpperCase = confirm('Would you like to include UpperCase into you password?');
+  let useSpecialChars =confirm('Would you like to include Special Characters into you password?');
+  let useNumbers = confirm('Would you like to include Numbers into you password?');
+
+  if (!useLowerCase && !useUpperCase && !useSpecialChars && !useNumbers)  {
+    alert('You need to select a minimum of ONE character type!')
+    return
+  }
+
+  let optionOBJ = {
+    length: numberofChars,
+    lowercase: useLowerCase,
+    uppercase: useUpperCase,
+    specialChars: useSpecialChars,
+    numbers: useNumbers,
+  }
+
+  return optionOBJ
+}
+
 
 
 // Add event listener to generate button
