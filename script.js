@@ -1,18 +1,13 @@
 // Assignment Code
-var generateBtn = document.querySelector("#generate");
+const specialCharacters = ['!', '#', '@', '$', '%', '^', '&', '*', '~'];
 
-var specialCharacters = [
-  '!', '#', '@', '$', '%', '^', '&', '*', '(', ')', '-', '_', '+', '=', '{', '}', '[', ',', '|', ':',';', '<', '>', '?', '.', ',', '`', '~',
-];
+const numericCharacters = [ '1', '2', '3', '4', '5', '6', '7', '8', '9', '0'];
 
-const numericCharacters = [ '1', '2','3','4','5','6','7','8','9','0'];
+const lowerCaseCharacters = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'];
 
-const lowerCaseCharacters = ['a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t', 'u','v','w','x','y','z'];
+const upperCaseCharacters = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', `I`, 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'];
 
-const upperCaseCharacters = ['A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','X','Y','Z'];
-
-let generateBtne1 = document.querySelector("#generate");
-
+let generateBtnE1 = document.querySelector("#generate");
 
 // Write password to the #password input
 function writePassword() {
@@ -21,18 +16,21 @@ function writePassword() {
 
   if (password === undefined) {
     return
-  };
+  }
 
   passwordText.value = password;
 }
 
 function generatePassword() {
-  let selectedOptions = getUserSelection ()
+  let selectedOptions = getUserSelection()
 
   if (selectedOptions === undefined)  {
     return
   }
-}
+  
+let { length, numbers, lowercase, uppercase, specialChars } = selectedOptions
+let possibleCharacters = [];
+let generatedPassword = "";
 
 if (lowercase) {
   possibleCharacters = possibleCharacters.concat(lowerCaseCharacters)
@@ -43,25 +41,20 @@ if (uppercase) {
 }
 
 if (specialChars) { 
-  possibleCharacters = possibleCharacters.concat(specialCaseCharacters)
+  possibleCharacters = possibleCharacters.concat(specialCharacters)
 }
 
 if (numbers) { 
   possibleCharacters = possibleCharacters.concat(numericCharacters) 
 }
 
-for (i = 0; i < length + i; i++)  {
-  let randomCharIndex = Math.floor(Math.random() = possibleCharacters.length);
-  generatePassword += possibleCharacters[randomCharIndex];
+for (i = 0; i < length + 1; i++)  {
+  let randomCharIndex = Math.floor(Math.random() * possibleCharacters.length);
+  generatedPassword += possibleCharacters[randomCharIndex];
 }
 
 return generatedPassword
-
- 
-
-let { length, lowercase, uppercase, specialCharacters, numbers }  = selectedOptions;
-let possibleCharacters = [];
-let generatePassword = "";
+}
 
 function getUserSelection() {
   let numberofChars = parseInt(prompt('Provide number of characters for the password. Please provide a number from 6 to 60'));
@@ -95,11 +88,8 @@ function getUserSelection() {
     specialChars: useSpecialChars,
     numbers: useNumbers,
   }
-
   return optionOBJ
 }
 
-
-
 // Add event listener to generate button
-generateBtn.addEventListener("click", writePassword);
+generateBtnE1.addEventListener("click", writePassword);
